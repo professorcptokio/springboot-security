@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MysecurityApplication<mysecurity>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.cmuniz.mysecurity.MysecurityApplication",
+            "projectName": "mysecurity",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
