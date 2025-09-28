@@ -2,16 +2,24 @@ package com.cmuniz.mysecurity.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.cmuniz.mysecurity.entities.Role;
+import com.cmuniz.mysecurity.entities.User;
 import com.cmuniz.mysecurity.repository.RoleRepository;
+import com.cmuniz.mysecurity.repository.UserRepository;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
 
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired 
+    private PasswordEncoder passwordEncoder;
+    
 
     @Override
     public void run(String... args) throws Exception {
@@ -29,6 +37,18 @@ public class DataInitializer implements CommandLineRunner {
             roleRepository.save(adminRole);
         }
 
-        System.out.println("Roles iniciais criadas ou já existentes!");
+        if (userRepository.findByUsername("admin").isEmpty()) {
+            User user = new User();
+            user.setUsername("admin");
+            user.setPassword(passwordEncoder.encode("admin"));
+
+            Role userRole = roleRepository.findByName("ROLE_ADMIN")
+                .orElseThrow(() -> new RuntimeException("Role não encontrada"));
+            user.getRoles().add(userRole);
+
+            userRepository.save(user);
+        }
+
+        System.out.println("Roles e Admin inicial criados ou já existentes!");
     }
 }

@@ -1,5 +1,7 @@
 package com.cmuniz.mysecurity.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +35,9 @@ public class UserService {
         logger.info("Usuário salvo com id: {}", saved.getId());
         return saved;
     }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
 }
