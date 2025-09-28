@@ -23,14 +23,12 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Cria ROLE_USER se não existir
         if (roleRepository.findByName("ROLE_USER").isEmpty()) {
             Role userRole = new Role();
             userRole.setName("ROLE_USER");
             roleRepository.save(userRole);
         }
 
-        // Cria ROLE_ADMIN se não existir
         if (roleRepository.findByName("ROLE_ADMIN").isEmpty()) {
             Role adminRole = new Role();
             adminRole.setName("ROLE_ADMIN");

@@ -9,14 +9,10 @@
     <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
-    <header>
-        <h1>MySecurity</h1>
-    </header>
+    <header><h1>MySecurity</h1></header>
     <nav>
         <div sec:authorize="!isAuthenticated()">
-            <a href="/login">Entrar</a>
-            <a href="/register">Registrar</a>
-            
+            <a href="/login">Entrar</a><a href="/register">Registrar</a> 
         </div>
         <div sec:authorize="isAuthenticated()">
             <form th:action="@{/logout}" method="post" style="display:inline;">
@@ -28,8 +24,6 @@
             <div sec:authorize="hasRole('ROLE_ADMIN')" style="display:inline;">
                 <a class="btn btn-primary" href="/admin">Administracao</a>
             </div>
-                
-           
         </div>
     </nav>
     <main>
