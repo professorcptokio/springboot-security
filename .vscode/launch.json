@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MysecurityApplication",
+            "request": "launch",
+            "mainClass": "MysecurityApplication",
+            "projectName": "mysecurity"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-MysecurityApplication<mysecurity>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
