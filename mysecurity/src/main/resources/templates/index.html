@@ -2,11 +2,15 @@
 <div th:replace="~{layout :: page-layout('Início', ~{::content})}">
 
     <div th:fragment="content">
+       
+      <div sec:authorize="isAuthenticated()">
+        <h2>Bem-vindo(a), <span sec:authentication="name">Usuário</span> ao sistema de segurança Spring Boot!</h2>
+      </div>
+      <div sec:authorize="!isAuthenticated()">
         <h2>Bem-vindo ao sistema de segurança Spring Boot!</h2>
+      </div>
         <p>Este é um exemplo de aplicação com autenticação e registro de usuários.</p>
-        <div sec:authorize="isAuthenticated()">
-            <p>Você está autenticado. Aproveite o sistema!</p>
-        </div>
+        
         <div sec:authorize="!isAuthenticated()">
             <p>Por favor, faça login ou registre-se para acessar mais recursos.</p>
         </div>
